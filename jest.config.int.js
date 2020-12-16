@@ -4,6 +4,7 @@ module.exports = {
 		'<rootDir>/src/**/*.ts',
 		'!<rootDir>/src/__tests__/**/*.ts',
 	],
+	modulePathIgnorePatterns: ['<rootDir>/build', '<rootDir>/.aws-sam'],
 	testRegex: '/__tests__/__integration__/.+.int.spec.ts$',
 	testTimeout: 30000,
 	preset: 'ts-jest',
