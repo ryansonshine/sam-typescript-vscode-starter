@@ -1,0 +1,14 @@
+# package directories
+node_modules
+
+# AWS SAM directories
+.aws-sam
+
+# Build directories
+build/
+
+# ESLint
+.eslint_cache
+
+# Jest code coverage
+.coverage
