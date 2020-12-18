@@ -4,6 +4,11 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const CopyPlugin = require('copy-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const chalk = require('chalk');
+
+if (process.env.IS_LOCAL) {
+  console.log(chalk.green('Running in local mode from process.env.IS_LOCAL'));
+}
 
 const isProd = process.env.NODE_ENV === 'production';
 const samTemplate = deserialize(readFileSync('./template.yaml').toString());
