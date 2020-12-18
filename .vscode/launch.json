@@ -5,6 +5,21 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "aws-sam",
+      "request": "direct-invoke",
+      "name": "sam-typescript-starter:HelloWorldFunction",
+      "preLaunchTask": "npm: prebuild",
+      "invokeTarget": {
+        "target": "template",
+        "templatePath": "template.yaml",
+        "logicalId": "HelloWorldFunction"
+      },
+      "lambda": {
+        "payload": {},
+        "environmentVariables": {}
+      }
+    },
+    {
       "name": "Current TS File",
       "type": "node",
       "request": "launch",
@@ -15,7 +30,7 @@
       "cwd": "${workspaceRoot}",
       "protocol": "inspector"
     },
-		{
+    {
       "name": "Debug Jest Tests",
       "type": "node",
       "request": "launch",
@@ -27,28 +42,24 @@
       "envFile": "${workspaceFolder}/.env",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-			"port": 9229,
-			"disableOptimisticBPs": true,
-			"windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+      "port": 9229,
+      "disableOptimisticBPs": true,
+      "windows": {
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
       }
-		},
+    },
     {
       "type": "node",
       "request": "launch",
       "name": "Debug Jest Current File",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": [
-        "${relativeFile}",
-        "--config",
-        "jest.config.js"
-      ],
+      "args": ["${relativeFile}", "--config", "jest.config.js"],
       "console": "integratedTerminal",
-			"internalConsoleOptions": "neverOpen",
-			"port": 9229,
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229,
       "disableOptimisticBPs": true,
       "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
       }
     }
   ]

@@ -8,7 +8,7 @@ description of this repository**
 
 - [ ] Raise issue/PR for SAM not reading package-lock.json
 - [ ] Update webpack.config.js
-- [ ] Add SAM vscode launch configurations
+- [x] Add SAM vscode launch configurations
 - [ ] Update README
 
 ---
