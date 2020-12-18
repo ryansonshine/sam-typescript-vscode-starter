@@ -1,30 +1,53 @@
+const { readFileSync } = require('fs');
+const { deserialize } = require('@aws-cdk/yaml-cfn');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const CopyPlugin = require('copy-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
+const isProd = process.env.NODE_ENV === 'production';
+const samTemplate = deserialize(readFileSync('./template.yaml').toString());
+const entries = Object.values(samTemplate.Resources)
+  .filter(
+    resource =>
+      resource.Type === 'AWS::Serverless::Function' &&
+      resource.Properties.Runtime.startsWith('node')
+  )
+  .map(({ Properties }) => {
+    const [filename] = Properties.Handler.split('.');
+    const directory = Properties.CodeUri.split('/')
+      .filter(x => x !== '.')
+      .slice(1, -1)
+      .join('/');
+    return {
+      filename,
+      directory,
+    };
+  })
+  .reduce(
+    (entryMap, { filename, directory }) => ({
+      ...entryMap,
+      [`${directory}${filename}`]: `./src/handlers/${filename}`,
+    }),
+    {}
+  );
+
 module.exports = {
   context: __dirname,
-  // TODO: Toggle based on build context
-  // mode: slsw.lib.webpack.isLocal ? 'development' : 'production',
-  mode: 'development',
-  // TODO: Parse template.yaml and build out entries
-  // entry: slsw.lib.entries,
-  entry: {
-    hello: './src/handlers/hello.ts',
-  },
-  // TODO: Toggle based on build context
-  // devtool: slsw.lib.webpack.isLocal
-  //   ? 'eval-cheap-module-source-map'
-  //   : 'source-map',
-  devtool: 'source-map',
+  entry: entries,
+  mode: isProd ? 'production' : 'development',
+  devtool: process.env.IS_LOCAL
+    ? 'eval-cheap-module-source-map'
+    : isProd
+    ? undefined
+    : 'source-map',
   resolve: {
     extensions: ['.mjs', '.json', '.ts'],
     symlinks: false,
     cacheWithContext: false,
   },
   output: {
-    libraryTarget: 'commonjs',
+    libraryTarget: 'commonjs2',
     path: path.join(__dirname, 'build'),
     filename: '[name].js',
   },
@@ -60,10 +83,7 @@ module.exports = {
     // TODO: Create issue on SAM GitHub addressing the issue of SAM not using package-lock
     // Copy package.json and package-lock.json to build directory for AWS SAM
     new CopyPlugin({
-      patterns: [
-        'package.json',
-        'package-lock.json',
-      ]
-    })
+      patterns: ['package.json', 'package-lock.json'],
+    }),
   ],
 };
