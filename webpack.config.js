@@ -41,11 +41,7 @@ module.exports = {
   context: __dirname,
   entry: entries,
   mode: isProd ? 'production' : 'development',
-  devtool: process.env.IS_LOCAL
-    ? 'eval-cheap-module-source-map'
-    : isProd
-    ? undefined
-    : 'source-map',
+  devtool: process.env.IS_LOCAL ? 'eval-cheap-module-source-map' : 'source-map',
   resolve: {
     extensions: ['.mjs', '.json', '.ts'],
     symlinks: false,
