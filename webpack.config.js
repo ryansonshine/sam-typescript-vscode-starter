@@ -26,6 +26,9 @@ module.exports = {
     path: path.resolve('.'),
   },
   target: 'node',
+  // Excludes the aws-sdk on all deployments other than local since the lambda
+  // runtime includes aws-sdk but the node12.x docker image for sam local does not
+  externals: isLocal ? [] : ['aws-sdk'],
   module: {
     rules: [
       // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
