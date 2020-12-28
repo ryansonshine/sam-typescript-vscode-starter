@@ -2,8 +2,9 @@ const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const chalk = require('chalk');
 const AwsSamPlugin = require('aws-sam-webpack-plugin');
+const isLocal = process.env.IS_LOCAL;
 
-if (process.env.IS_LOCAL) {
+if (isLocal) {
   console.log(chalk.green('Running in local mode from process.env.IS_LOCAL'));
 }
 
@@ -14,7 +15,7 @@ module.exports = {
   context: __dirname,
   entry: awsSamPlugin.entry(),
   mode: isProd ? 'production' : 'development',
-  devtool: process.env.IS_LOCAL ? 'eval-cheap-module-source-map' : 'source-map',
+  devtool: isLocal ? 'eval-cheap-module-source-map' : 'source-map',
   resolve: {
     extensions: ['.mjs', '.json', '.ts', '.js'],
     symlinks: false,
