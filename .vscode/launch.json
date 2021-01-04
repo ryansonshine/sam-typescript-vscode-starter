@@ -5,21 +5,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "aws-sam",
-      "request": "direct-invoke",
-      "name": "sam-typescript-starter:HelloWorldFunction",
-      "preLaunchTask": "npm: prebuild",
-      "invokeTarget": {
-        "target": "template",
-        "templatePath": "template.yaml",
-        "logicalId": "HelloWorldFunction"
-      },
-      "lambda": {
-        "payload": {},
-        "environmentVariables": {}
-      }
-    },
-    {
       "name": "Current TS File",
       "type": "node",
       "request": "launch",
