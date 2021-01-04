@@ -13,7 +13,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   context: __dirname,
-  entry: awsSamPlugin.entry(),
+  entry: () => awsSamPlugin.entry(),
   mode: isProd ? 'production' : 'development',
   devtool: isLocal ? 'eval-cheap-module-source-map' : 'source-map',
   resolve: {
