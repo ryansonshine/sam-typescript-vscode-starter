@@ -4,7 +4,7 @@
   "description": "AWS SAM TypeScript Starter",
   "author": "Ryan Sonshine",
   "scripts": {
-    "start": "IS_LOCAL=true concurrently 'webpack --watch' 'sam local start-api'",
+    "start": "IS_LOCAL=true npm run build && concurrently 'webpack --watch' 'sam local start-api'",
     "deploy": "sam deploy --guided",
     "build": "npm run clean && webpack",
     "lint": "eslint src/ --fix",

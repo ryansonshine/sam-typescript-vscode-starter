@@ -1,21 +1,13 @@
 <!-- omit in toc -->
-# AWS SAM (Serverless Application Model) TypeScript Starter
-
-**Note: This readme has been copied from a Serverless starter and is not an accurate
-description of this repository**
-
-## TODOs
-
-- [ ] Raise issue/PR for SAM not reading package-lock.json
-- [x] Update webpack.config.js
-- [x] Add SAM vscode launch configurations
-- [ ] Add comments to webpack config
-- [ ] Update README
-
----
+# AWS Serverless Application Model (AWS SAM) TypeScript Starter
 
 An opinionated boilerplate for getting up and running using [TypeScript](https://www.typescriptlang.org/)
-and [Serverless](https://www.serverless.com/).
+and [AWS Serverless Application Model (AWS SAM)](https://aws.amazon.com/serverless/sam/).
+
+## Requirements
+
+- [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
+- [Node.js >12.x](https://nodejs.org/en/download/)
 
 ## Quick Start
 
@@ -33,31 +25,66 @@ with the new changes live.
 <!-- omit in toc -->
 ## Table of Contents
 
-- [TODOs](#todos)
+- [Requirements](#requirements)
 - [Quick Start](#quick-start)
 - [NPM Scripts](#npm-scripts)
+  - [`npm run start`](#npm-run-start)
+  - [`npm run deploy`](#npm-run-deploy)
+  - [`npm run lint`](#npm-run-lint)
+  - [`npm run test`](#npm-run-test)
+  - [`npm run test:watch`](#npm-run-testwatch)
+  - [`npm run test:int`](#npm-run-testint)
+  - [`npm run typecheck`](#npm-run-typecheck)
+  - [`npm run clean`](#npm-run-clean)
 - [Features](#features)
-  - [Serverless](#serverless)
+  - [Webpack / AWS SAM (Serverless Application Model)](#webpack--aws-sam-serverless-application-model)
   - [Visual Studio Code](#visual-studio-code)
   - [Testing](#testing)
   - [Linting/Styling](#lintingstyling)
+- [TODOs](#todos)
 
 ## NPM Scripts
 
-- `npm run deploy` - Deploy to AWS using Serverless
-- `npm run start` - Start offline mode
-- `npm run lint` - Lints and auto-fixes any auto-fixable problems
-- `npm run test` - Run tests and collect coverage
-- `npm run test:watch` - Run tests in watch mode
-- `npm run test:int` - Run integration tests
-- `npm run typecheck` - Type check with the TypeScript compiler
+### `npm run start`
+
+Starts offline mode
+
+Creates an initial build to remove any cached files, then runs webpack in watch mode concurrently with [`sam local start-api`](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-start-api.html)
+
+### `npm run deploy`
+
+Runs `sam deploy` in guided mode
+
+### `npm run lint`
+
+Lints and auto-fixes any auto-fixable problems
+
+### `npm run test`
+
+Run tests and collect coverage
+
+### `npm run test:watch`
+
+Run tests in watch mode
+
+### `npm run test:int`
+
+Run integration tests
+
+### `npm run typecheck`
+
+Type check with the TypeScript compiler
+
+### `npm run clean`
+
+Deletes compiled code from `.aws-sam/`
 
 ## Features
 
-### Serverless
+### Webpack / AWS SAM (Serverless Application Model)
 
-[Serverless Webpack](https://github.com/serverless-heaven/serverless-webpack) to
-optimize bundle sizes and [Serverless Offline](https://github.com/dherault/serverless-offline)
+[Webpack](https://webpack.js.org/) and [AWS SAM Webpack Plugin](https://github.com/graphboss/aws-sam-webpack-plugin)
+to optimize bundle sizes and [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-command-reference.html)
 for local emulation.
 
 ### Visual Studio Code
@@ -69,7 +96,6 @@ Pre-configured project level settings for [VSCode](https://github.com/microsoft/
   - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - Launch Configuration - [link](./.vscode/launch.json)
   - Current TS File - Uses [ts-node](https://github.com/TypeStrong/ts-node) for execution on your current file
-  - Debug Serverless Offline - Launches [serverless-offline](https://github.com/dherault/serverless-offline) in debug mode for placing breakpoints
   - Debug Jest Tests - Runs all tests using [jest](https://github.com/facebook/jest) in debug mode for placing breakpoints
   - Debug Jest Current File - Runs all tests in your current file using [jest](https://github.com/facebook/jest) in debug mode for placing breakpoints
 - Settings - [link](./.vscode/settings.json)
@@ -87,3 +113,7 @@ Pre-configured project level settings for [VSCode](https://github.com/microsoft/
 
 Code is automatically linted and formatted on the pre-commit hook using [husky](https://github.com/typicode/husky)
 and [lint-staged](https://github.com/okonet/lint-staged)
+
+## TODOs
+
+- [ ]  Add vscode launch configuration for debug on `sam local start-api`
