@@ -29,6 +29,7 @@ with the new changes live.
 - [Quick Start](#quick-start)
 - [NPM Scripts](#npm-scripts)
   - [`npm run start`](#npm-run-start)
+  - [`npm run debug`](#npm-run-debug)
   - [`npm run deploy`](#npm-run-deploy)
   - [`npm run lint`](#npm-run-lint)
   - [`npm run test`](#npm-run-test)
@@ -50,6 +51,20 @@ with the new changes live.
 Starts offline mode
 
 Creates an initial build to remove any cached files, then runs webpack in watch mode concurrently with [`sam local start-api`](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-start-api.html)
+
+### `npm run debug`
+
+Executes the same commands as `npm run start` but specifies the debug port
+for `sam local start-api` to use.
+
+How-to:
+
+1. Set a breakpoint on `hello.ts`
+2. Run `npm run debug`
+3. Make a GET request on [http://127.0.0.1:3000/hello](http://127.0.0.1:3000/hello)
+4. Attach the node debugger with the `Attach: HelloWorldFunction` launch configuration
+
+Additional Info: [AWS: Step-through debugging Node.js functions locally](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-using-debugging-nodejs.html)
 
 ### `npm run deploy`
 
