@@ -131,4 +131,5 @@ and [lint-staged](https://github.com/okonet/lint-staged)
 
 ## TODOs
 
-- [ ]  Add vscode launch configuration for debug on `sam local start-api`
+- [x]  Add vscode launch configuration for debug on `sam local start-api`
+- [ ]  Open PR for `aws-sam-webpack-plugin` with **append** behavior on launch configurations
