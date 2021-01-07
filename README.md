@@ -8,6 +8,7 @@ and [AWS Serverless Application Model (AWS SAM)](https://aws.amazon.com/serverle
 
 - [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
 - [Node.js >12.x](https://nodejs.org/en/download/)
+- [Docker](https://docs.docker.com/get-docker/)
 
 ## Quick Start
 
