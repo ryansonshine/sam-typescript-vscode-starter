@@ -9,12 +9,11 @@ if (isLocal) {
 }
 
 const awsSamPlugin = new AwsSamPlugin({ vscodeDebug: false });
-const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   context: __dirname,
   entry: () => awsSamPlugin.entry(),
-  mode: isProd ? 'production' : 'development',
+  mode: isLocal ? 'development' : 'production',
   devtool: isLocal ? 'eval-cheap-module-source-map' : 'source-map',
   resolve: {
     extensions: ['.mjs', '.json', '.ts', '.js'],
