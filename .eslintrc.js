@@ -27,6 +27,7 @@ module.exports = {
     'node/shebang': 'off',
     quotes: ['warn', 'single', { avoidEscape: true }],
     'node/no-unpublished-import': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
   },
   overrides: [
     {
